@@ -1,0 +1,13 @@
+[
+	{"id":1000,"price":10.0,"name":"Playing Card","age":1,"url":"http://localhost:8080/PlayingCard.png"},
+	{"id":1001,"price":150.0,"name":"Remote Control Car","age":1,"url":"http://localhost:8080/RemoteCar.png"},
+	{"id":1002,"price":99.99,"name":"Tower Puzzle","age":1,"url":"http://localhost:8080/puzzle.png"},
+	{"id":1003,"price":9.99,"name":"Soft Doll","age":1,"url":"http://localhost:8080/Doll.png"},
+	{"id":1004,"price":102.5,"name":"LCD Tablet","age":1,"url":"http://localhost:8080/lcdtablet.png"},
+	{"id":1005,"price":90.0,"name":"Dancing Cactus","age":1,"url":"http://localhost:8080/cactus.png"},
+	{"id":1006,"price":25.5,"name":"Science Kit","age":1,"url":"http://localhost:8080/sciencekit.png"},
+	{"id":1007,"price":80.99,"name":"Computer","age":1,"url":"http://localhost:8080/computer.png"},
+	{"id":1008,"price":5.99,"name":"Hand Puppet","age":1,"url":"http://localhost:8080/handpuppet.png"},
+	{"id":1009,"price":40.0,"name":"360 Doll","age":1,"url":"http://localhost:8080/doll360.png"},
+	{"id":1010,"price":120.0,"name":"Tower of Hanoi","age":1,"url":"http://localhost:8080/towerofhanoi.png"}
+]
