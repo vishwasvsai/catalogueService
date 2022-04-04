@@ -17,6 +17,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestTemplate;
 
 import com.kidzoo.catalogue.dto.Inventory;
+import com.kidzoo.catalogue.utils.TestUtils;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {StockStatusDAO.class})
@@ -33,7 +34,7 @@ class StockDAOTest {
 	@Test
 	public void getInventoryByIdTest(){
 		Long id = 1000L;
-		Mockito.when(restTemplate.getForEntity(ArgumentMatchers.eq(StockStatusDAO.BASE_URL+id), ArgumentMatchers.eq(String.class))).thenReturn(getResponseforId(id));
+		Mockito.when(restTemplate.getForEntity(ArgumentMatchers.eq(StockStatusDAO.BASE_URL+id), ArgumentMatchers.eq(String.class))).thenReturn(TestUtils.getResponseforId(id));
 		
 		Inventory inventory = stockDao.getInventoryById(id);
 		assertTrue(inventory.getId().equals(id));
@@ -42,34 +43,12 @@ class StockDAOTest {
 	
 	@Test
 	public void getInventoryStatusTest(){
-		Mockito.when(restTemplate.getForEntity(ArgumentMatchers.eq(StockStatusDAO.BASE_URL+"findByStatus?status=available"), ArgumentMatchers.eq(String.class))).thenReturn(getResponseByStatus());
+		Mockito.when(restTemplate.getForEntity(ArgumentMatchers.eq(StockStatusDAO.BASE_URL+"findByStatus?status=available"), ArgumentMatchers.eq(String.class))).thenReturn(TestUtils.getResponseByStatus());
 		
 		Set<Inventory> inventory = stockDao.getInventoryByStatus("available");
 		assertTrue(inventory.size() ==12);
 	}
 	
 	
-	public ResponseEntity<String> getResponseforId(Long id){
-		return  new ResponseEntity<>(
-		          "{\"id\":"+id+", \"status\":\"available\"}", HttpStatus.OK);
-		
-	}
 	
-	public ResponseEntity<String> getResponseByStatus(){
-		return  new ResponseEntity<>(
-					"[{\"id\":1000, \"status\":\"available\"},"
-		          		+ "{\"id\":1001, \"status\":\"available\"},"
-		          		+ "{\"id\":1002, \"status\":\"available\"},"
-		          		+ "{\"id\":1003, \"status\":\"available\"},"
-		          		+ "{\"id\":1004, \"status\":\"available\"},"
-		          		+ "{\"id\":1005, \"status\":\"available\"},"
-		          		+ "{\"id\":1006, \"status\":\"available\"},"
-		          		+ "{\"id\":1007, \"status\":\"available\"},"
-		          		+ "{\"id\":1008, \"status\":\"available\"},"
-		          		+ "{\"id\":1009, \"status\":\"available\"},"
-		          		+ "{\"id\":1010, \"status\":\"available\"},"
-		          		+ "{\"id\":1011, \"status\":\"available\"}]"
-		          		, HttpStatus.OK);
-		
-	}
 }

@@ -5,6 +5,7 @@ import static org.mockito.ArgumentMatchers.any;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -45,11 +46,24 @@ class CatalogueServiceTest {
 	
 	@Test
 	public void getCataloguesTestByPrice() throws CatalogueError {
-		Mockito.when(stubRepo.findByPrice(any(), any())).thenReturn(TestUtils.getToys());
-		System.out.println(service.getCatalogues(10d,30d,"available"));
+		Mockito.when(stubRepo.findByPrice(10d,30d)).thenReturn(TestUtils.getToys());
 		assertTrue(service.getCatalogues(10d,30d,"available").size()==11);
 	}
 	
 	
+	@Test
+	public void getCataloguesTestByPriceAndStockStatuc() throws CatalogueError {
+		Mockito.when(stubRepo.findByPrice(10d,30d)).thenReturn(TestUtils.getToys());
+		Mockito.when(stockdao.getInventoryByStatus(ArgumentMatchers.eq("backorder"))).thenReturn(TestUtils.getResponseByBackOrderStatus());
+		assertTrue(service.getCatalogues(10d,30d,"backorder").size()==2);
+	}
+	
+	
+	@Test
+	public void getCataloguesTestByStockStatuc() throws CatalogueError {
+		Mockito.when(stubRepo.findAll()).thenReturn(TestUtils.getToys());
+		Mockito.when(stockdao.getInventoryByStatus(ArgumentMatchers.eq("backorder"))).thenReturn(TestUtils.getResponseByBackOrderStatus());
+		assertTrue(service.getCatalogues("backorder").size()==2);
+	}
 	
 }

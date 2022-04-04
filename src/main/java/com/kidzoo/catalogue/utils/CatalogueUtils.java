@@ -65,13 +65,14 @@ public class CatalogueUtils {
 	 * @return
 	 * @throws CatalogueError
 	 */
-	public static String validateAndExtract(String stockStatuses) throws CatalogueError{
+	public static String validateStockStatus(String stockStatuses) throws CatalogueError{
 		if(stockStatuses == null) {
 			return StockStatusEnum.AVAILABLE.getStockStatus();
 		}
-		
 		for(String status : stockStatuses.split(",")) {
-			if(StockStatusEnum.valueOf(status) == null) {
+			try {
+				StockStatusEnum.valueOf(status.toUpperCase());
+			}catch(IllegalArgumentException e) {
 				throw new CatalogueError(" Invalid Inventory status passed "+stockStatuses);
 			}
 		}

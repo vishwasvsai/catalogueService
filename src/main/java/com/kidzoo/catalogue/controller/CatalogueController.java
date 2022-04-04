@@ -26,7 +26,7 @@ public class CatalogueController {
 			@RequestParam(name="stockstatus", required = false) String stockstatus) {
 		List<ToyDto> responseData;
 		try {
-			String stockStatus = CatalogueUtils.validateAndExtract(stockstatus);
+			String stockStatus = CatalogueUtils.validateStockStatus(stockstatus);
 			if(price!=null) {
 				List<Double> prices =CatalogueUtils.parsePrice(price);
 				responseData = catalogueService.getCatalogues(prices.get(0),prices.get(1),stockStatus);

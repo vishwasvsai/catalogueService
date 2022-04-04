@@ -30,5 +30,21 @@ class CatalogueUtilsTest {
 		 assertTrue(numberformat.getMessage().contains("Price should be Number"));
 		 assertTrue(invalidformat.getMessage().contains("Invalid input price format"));
 	}
+	
+	
+	@Test
+	void validateStockStatus() throws CatalogueError {
+		assertTrue(CatalogueUtils.validateStockStatus(null).equals("available"));
+		assertTrue(CatalogueUtils.validateStockStatus("available").equals("available"));
+		assertTrue(CatalogueUtils.validateStockStatus("available,backorder").equals("available,backorder"));
+		
+		Exception invalidformat = assertThrows(CatalogueError.class, () -> {
+			CatalogueUtils.validateStockStatus("notavilable");
+		 });
+		
+		assertTrue(invalidformat.getMessage().contains("Invalid Inventory status passed "));
+	}
+	
+	
 
 }
