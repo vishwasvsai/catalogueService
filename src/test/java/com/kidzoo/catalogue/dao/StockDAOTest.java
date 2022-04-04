@@ -19,7 +19,7 @@ import org.springframework.web.client.RestTemplate;
 import com.kidzoo.catalogue.dto.Inventory;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {StockDAO.class})
+@ContextConfiguration(classes = {StockStatusDAO.class})
 
 class StockDAOTest {
 	
@@ -27,13 +27,13 @@ class StockDAOTest {
 	public RestTemplate restTemplate;
 	
 	@Autowired
-	StockDAO stockDao;
+	StockStatusDAO stockDao;
 
 	
 	@Test
 	public void getInventoryByIdTest(){
 		Long id = 1000L;
-		Mockito.when(restTemplate.getForEntity(ArgumentMatchers.eq(StockDAO.BASE_URL+id), ArgumentMatchers.eq(String.class))).thenReturn(getResponseforId(id));
+		Mockito.when(restTemplate.getForEntity(ArgumentMatchers.eq(StockStatusDAO.BASE_URL+id), ArgumentMatchers.eq(String.class))).thenReturn(getResponseforId(id));
 		
 		Inventory inventory = stockDao.getInventoryById(id);
 		assertTrue(inventory.getId().equals(id));
@@ -42,7 +42,7 @@ class StockDAOTest {
 	
 	@Test
 	public void getInventoryStatusTest(){
-		Mockito.when(restTemplate.getForEntity(ArgumentMatchers.eq(StockDAO.BASE_URL+"findByStatus?status=available"), ArgumentMatchers.eq(String.class))).thenReturn(getResponseByStatus());
+		Mockito.when(restTemplate.getForEntity(ArgumentMatchers.eq(StockStatusDAO.BASE_URL+"findByStatus?status=available"), ArgumentMatchers.eq(String.class))).thenReturn(getResponseByStatus());
 		
 		Set<Inventory> inventory = stockDao.getInventoryByStatus("available");
 		assertTrue(inventory.size() ==12);

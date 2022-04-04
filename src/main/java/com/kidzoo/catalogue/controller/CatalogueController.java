@@ -23,10 +23,10 @@ public class CatalogueController {
 	
 	@GetMapping("/v1.0/catalogue")
 	public ResponseEntity<CatalogueResponse> getCatalogues(@RequestParam(name="price", required = false) String price,
-			@RequestParam(name="stock", required = false) String stock) {
+			@RequestParam(name="stockstatus", required = false) String stockstatus) {
 		List<ToyDto> responseData;
 		try {
-			String stockStatus = CatalogueUtils.validateAndExtract(stock);
+			String stockStatus = CatalogueUtils.validateAndExtract(stockstatus);
 			if(price!=null) {
 				List<Double> prices =CatalogueUtils.parsePrice(price);
 				responseData = catalogueService.getCatalogues(prices.get(0),prices.get(1),stockStatus);

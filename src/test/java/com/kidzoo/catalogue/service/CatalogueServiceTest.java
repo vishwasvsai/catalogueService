@@ -12,14 +12,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.kidzoo.catalogue.dao.CatalogueDAO;
-import com.kidzoo.catalogue.dao.StockDAO;
+import com.kidzoo.catalogue.dao.StockStatusDAO;
 import com.kidzoo.catalogue.dto.ToyDto;
 import com.kidzoo.catalogue.error.CatalogueError;
 import com.kidzoo.catalogue.repository.CatalogueRepository;
 import com.kidzoo.catalogue.utils.TestUtils;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {CatalogueService.class,CatalogueDAO.class,StockDAO.class})
+@ContextConfiguration(classes = {CatalogueService.class,CatalogueDAO.class,StockStatusDAO.class})
 class CatalogueServiceTest {
 
 	@MockBean
@@ -33,7 +33,7 @@ class CatalogueServiceTest {
 	
 	// This will ignore stockStatus
 	@MockBean
-	StockDAO stockdao;
+	StockStatusDAO stockdao;
 	
 	@Test
 	public void getCataloguesTest() throws CatalogueError {

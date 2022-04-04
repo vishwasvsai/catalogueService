@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.kidzoo.catalogue.dao.CatalogueDAO;
-import com.kidzoo.catalogue.dao.StockDAO;
+import com.kidzoo.catalogue.dao.StockStatusDAO;
 import com.kidzoo.catalogue.dto.Inventory;
 import com.kidzoo.catalogue.dto.ToyDto;
 import com.kidzoo.catalogue.error.CatalogueError;
@@ -27,7 +27,7 @@ public class CatalogueService {
 	
 	
 	@Autowired
-	private StockDAO  stockDAO;
+	private StockStatusDAO  stockDAO;
 	
 	public List<ToyDto> getCatalogues(String stockStatus) throws CatalogueError{
 		return filterByStockStatus(catalogueDAO.getCatalogues(),stockStatus);

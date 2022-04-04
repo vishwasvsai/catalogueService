@@ -17,11 +17,11 @@ import com.kidzoo.catalogue.dto.Inventory;
 
 
 @Component
-public class StockDAO {
+public class StockStatusDAO {
 	
 	@Autowired
 	public RestTemplate restTemplate;
-	static Logger LOG = LoggerFactory.getLogger(StockDAO.class);
+	static Logger LOG = LoggerFactory.getLogger(StockStatusDAO.class);
 	public static String BASE_URL="http://inventory.kidzoo.com/v2/inventory/";
 	
 	/**

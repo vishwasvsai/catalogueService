@@ -10,7 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 
-import com.kidzoo.catalogue.dao.StockDAO;
+import com.kidzoo.catalogue.dao.StockStatusDAO;
 
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
@@ -23,7 +23,7 @@ class CatalogueControllerTest {
 	
 	// This will ignore stockStatus
 	@MockBean
-	StockDAO stockdao;
+	StockStatusDAO stockdao;
 	
 	@Test
 	public void getCatalogues_v1_0() {
